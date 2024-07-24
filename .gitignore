@@ -30,3 +30,4 @@ dist/
 .next/
 .nuxt/
 .vuepress/dist
+credentials.json
