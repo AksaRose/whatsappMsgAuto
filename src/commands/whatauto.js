@@ -1,22 +1,13 @@
-function whatauto() {
+function whatauto(client) {
   console.log("auto running");
 
 const fs = require('fs').promises;
 const path = require('path');
 const { google } = require('googleapis');
-const {Client} = require ('whatsapp-web.js');
-const qrcode = require('qrcode-terminal');
-require('dotenv').config();
+
 
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
-const client = new Client({
-  webVersion: "2.2409.4-beta",
-  webVersionCache: {
-    type: "remote",
-    remotePath:
-      "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2409.4-beta.html",
-  },
-});
+
 
 /**
  * Load the service account key file and return the authenticated client.
@@ -73,12 +64,6 @@ async function listMajors(auth) {
         
       });
   });
-  
-  client.on('qr',(qr)=>{
-      qrcode.generate(qr, {small: true}); 
-  });
-
-  
 
   }
 
