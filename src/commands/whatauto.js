@@ -45,17 +45,18 @@ function whatauto(client) {
 
       client.once('ready',() =>{  
         console.log('Client is ready!');
+        let phno = 0;
         rows.forEach((row) => {
           if (row[0].length === 12){
-            const phno = `${row[0]}@c.us`;
-            client.sendMessage(phno,"test:This, message is being sent from automated system")
-            .then(console.log("message has been send"))
+            phno = `${row[0]}@c.us`;
           }
           else {
-            const phno = `91${row[0]}@c.us`;
-            client.sendMessage(phno,"test:This, message is being sent from automated system")
-            .then(console.log("message has been send"))
+            phno = `91${row[0]}@c.us`;
           }
+          client.sendMessage(phno,"test:This message is being sent from automated system")
+          .then(() => {
+            console.log(`Message has been sent to ${phno}`);
+          })
         });
       });
     }
