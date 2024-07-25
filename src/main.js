@@ -26,7 +26,7 @@ console.log("2. automate whatsapp message");
 let choice = readlineSync.question("Enter your choice: ");
 switch(choice){
     case "1": {
-        whatbot();
+        whatbot(client);
         break;
     }
     case "2": {
