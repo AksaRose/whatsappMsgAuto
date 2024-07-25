@@ -1,3 +1,6 @@
+function whatauto() {
+  console.log("auto running");
+
 const fs = require('fs').promises;
 const path = require('path');
 const { google } = require('googleapis');
@@ -60,12 +63,12 @@ async function listMajors(auth) {
         if (row[0].length === 12){
         const phno = `${row[0]}@c.us`;
         client.sendMessage(phno,"test:This, message is being sent from automated system")
-        .then(console.log("message has been send (has 12)"))
+        .then(console.log("message has been send"))
         }
         else {
           const phno = `91${row[0]}@c.us`;
         client.sendMessage(phno,"test:This, message is being sent from automated system")
-        .then(console.log("message has been send(has 10)"))
+        .then(console.log("message has been send"))
         }
         
       });
@@ -83,3 +86,5 @@ async function listMajors(auth) {
 
 authorize().then(listMajors).catch(console.error);
 client.initialize();
+}
+module.exports = whatauto;

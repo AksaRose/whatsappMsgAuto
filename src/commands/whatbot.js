@@ -1,3 +1,5 @@
+function whatbot() {
+
 const {Client} = require ('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 require('dotenv').config();
@@ -79,4 +81,5 @@ client.on('message_create', async (message) => {
   client.initialize();
  
   
-  
+}
+module.exports = whatbot;
