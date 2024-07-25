@@ -1,8 +1,19 @@
 const fs = require('fs').promises;
 const path = require('path');
 const { google } = require('googleapis');
+const {Client} = require ('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
+require('dotenv').config();
 
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+const client = new Client({
+  webVersion: "2.2409.4-beta",
+  webVersionCache: {
+    type: "remote",
+    remotePath:
+      "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2409.4-beta.html",
+  },
+});
 
 /**
  * Load the service account key file and return the authenticated client.
@@ -37,11 +48,38 @@ async function listMajors(auth) {
     console.log('No data found.');
     return;
   }
+  else {
+    sendmes(rows);
+  }
 
-  rows.forEach((row) => {
-    // Print columns A and E, which correspond to indices 0 and 4.
-    console.log(`${row[0]}`);
+  async function sendmes(rows) {
+
+  client.once('ready',() =>{
+      console.log('Client is ready!');
+      rows.forEach((row) => {
+        if (row[0].length === 12){
+        const phno = `${row[0]}@c.us`;
+        client.sendMessage(phno,"test:This, message is being sent from automated system")
+        .then(console.log("message has been send (has 12)"))
+        }
+        else {
+          const phno = `91${row[0]}@c.us`;
+        client.sendMessage(phno,"test:This, message is being sent from automated system")
+        .then(console.log("message has been send(has 10)"))
+        }
+        
+      });
   });
+  
+  client.on('qr',(qr)=>{
+      qrcode.generate(qr, {small: true}); 
+  });
+
+  
+
+  }
+
 }
 
 authorize().then(listMajors).catch(console.error);
+client.initialize();
