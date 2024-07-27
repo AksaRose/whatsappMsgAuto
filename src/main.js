@@ -1,5 +1,6 @@
 const whatbot = require('./commands/whatbot.js');
 const whatauto = require('./commands/whatauto.js');
+const reportauto = require('./commands/reportauto.js');
 const readlineSync = require('readline-sync');
 const {Client} = require ('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
@@ -22,6 +23,7 @@ console.log("===================================================================
 console.log("Welocme to Admin Panel. What do you want to do?");
 console.log("1. run whatsapp bot");
 console.log("2. automate whatsapp message");
+console.log("3. automate report");
 
 let choice = readlineSync.question("Enter your choice: ");
 switch(choice){
@@ -31,6 +33,10 @@ switch(choice){
     }
     case "2": {
         whatauto(client);
+        break;
+    }
+    case "3": {
+        reportauto();
         break;
     }
 }

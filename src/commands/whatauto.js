@@ -22,7 +22,7 @@ function whatauto(client) {
     return client;
   }
   /**
-  * Prints the names and majors of students in a sample spreadsheet:
+  * Prints the phonenumber of students in the spreadsheet:
    * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
   * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
   */
